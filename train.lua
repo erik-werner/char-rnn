@@ -182,7 +182,7 @@ if do_random_init then
     params:uniform(-0.08, 0.08) -- small uniform numbers
 end
 -- initialize the LSTM forget gates with slightly higher biases to encourage remembering in the beginning
-if opt.model == 'lstm' then
+if opt.model == 'lstm' and string.len(opt.init_from) == 0 then
     for layer_idx = 1, opt.num_layers do
         for _,node in ipairs(protos.rnn.forwardnodes) do
             if node.data.annotations.name == "i2h_" .. layer_idx then
